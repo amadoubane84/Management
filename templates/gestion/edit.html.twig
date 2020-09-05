@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Modifier un projet</h1>
+        {{ include('gestion/_form.html.twig', {'button_label': 'Enregistrer les modifications'}) }}
+        <a href="{{ path('gestion_index') }}"><i class="fas fa-hand-point-left"> Retour sur la liste gestion</i></a>
+        <div class="text-right">
+        {{ include('gestion/_delete_form.html.twig') }}
+        </div>
+    </div>
+{% endblock %}

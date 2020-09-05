@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="jumbotron">
+            <h1 class="text-center">Gestion</h1>
+
+            <table class="table">
+                <tbody>
+
+                    <tr>
+                        <th>Marches</th>
+                        <td>{{ gestion.Marches }}</td>
+                    </tr>
+                    <tr>
+                        <th>Maitre d'ouvrages</th>
+                        <a href="{{ path('gestion_edit', {'id': gestion.id}) }}"><td>{{ gestion.MaitreOuvrage }}</td></a>
+                    </tr>
+                    <tr>
+                        <th>Projets</th>
+                        <td>{{ gestion.Projets }}</td>
+                    </tr>
+                    <tr>
+                        <th>Montant FCFA TTC</th>
+                        <td>{{ gestion.MontantFCFATTC }}</td>
+                    </tr>
+                    <tr>
+                        <th>Date debut</th>
+                        <td>{{ gestion.DateDebut ? gestion.DateDebut|date('d-m-Y') : '' }}</td>
+                    </tr>
+                    <tr>
+                        <th>Contrat</th>
+                        <td>{{ gestion.Contrat }}</td>
+                    </tr>
+                    <tr>
+                        <th>Duree</th>
+                        <td>{{ gestion.Duree ? gestion.Duree|date('d-m-Y') : '' }}</td>
+                    </tr>
+                    <tr>
+                        <th>Date fin</th>
+                        <td>{{ gestion.DateFin ? gestion.DateFin|date('d-m-Y') : '' }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <a href="javascript:window.print()"><button>Imprimer cette page</button></a><br><br>
+            <a href="{{ path('gestion_index') }}"><i class="fas fa-hand-point-left"> Retour vers la liste de gestion</i></a>
+              <div class="text-right">
+                <div class="btn-group">
+                    <a href="{{ path('gestion_edit', {'id': gestion.id}) }}" class="btn btn-warning LB"><i class="fas fa-edit"> Modifier</i></a>
+                    {{ include('gestion/_delete_form.html.twig') }}
+                </div>
+              </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ressource{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="shadow p-3 mb-5 bg-white rounded">
+            <h2 class="text-center mb-5">Fiche descriptive</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card" style="width:360px">
+                        {%  if ressource.filename %}
+                            <div><img src="{{ vich_uploader_asset(ressource,'imageFile')|imagine_filter('thumb') }}" alt="" class="img-thumbnail" style="width:360px;height:240px"></div>
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title text-primary text-center" style="font-size: 1.6em">{{ ressource.Prenom }}&nbsp{{ ressource.Nom }}</h5>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">N° CNI:&nbsp&nbsp{{ ressource.CNI }}</li>
+                            <li class="list-group-item">Email:&nbsp&nbsp{{ ressource.Email }}</li>
+                            <li class="list-group-item">Matricule:&nbsp&nbsp{{ ressource.Matricule }}</li>
+                        </ul>
+                        <div class="card-body">
+                            <p>Téléphone:&nbsp&nbsp</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-7 offset-1">
+                    <table class="table table-striped table-bordered">
+                        <tbody>
+                        <tr>
+                            <th>Id</th>
+                            <td>{{ ressource.id }}</td>
+                        </tr>
+                        <tr>
+                            <th>Diplomes</th>
+                            <td>{{ ressource.Diplomes }}</td>
+                        </tr>
+                        <tr>
+                            <th>Date de naissance</th>
+                            <td>{{ ressource.DateDeNaissance ? ressource.DateDeNaissance|date('d-m-Y') : '' }}</td>
+                        </tr>
+                        <tr>
+                            <th>Lieu de naissance</th>
+                            <td>{{ ressource.LieuDeNaissance }}</td>
+                        </tr>
+                        <tr>
+                            <th>Statut dans entreprise</th>
+                            <td>{{ ressource.StatutDansEntreprise }}</td>
+                        </tr>
+                        <tr>
+                            <th>Situation matrimoniale</th>
+                            <td>{{ ressource.SituationMatrimoniale }}</td>
+                        </tr>
+                        <tr>
+                            <th>IPRES</th>
+                            <td>{{ ressource.IPRES }}</td>
+                        </tr>
+                        <tr>
+                            <th>CSS</th>
+                            <td>{{ ressource.CSS }}</td>
+                        </tr>
+                        <tr>
+                            <th>Declaration_fiscale</th>
+                            <td>{{ ressource.DeclarationFiscale }}</td>
+                        </tr>
+                        <tr>
+                            <th>Impots</th>
+                            <td>{{ ressource.Impots }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+            <br>
+            <a href="{{ path('ressource_index') }}">Liste des employers</a>
+                <div class="text-right">
+                <div class="btn-group">
+                <a href="{{ path('ressource_edit', {'id': ressource.id}) }}" class="btn btn-warning LB ">Modifier</a>&nbsp
+                {{ include('ressource/_delete_form.html.twig') }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

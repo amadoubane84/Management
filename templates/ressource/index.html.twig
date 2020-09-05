@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+ {% block title %}Liste des employés{% endblock %}
+{% block stylesheets %}
+    <style>
+        body{
+            background-color: #dee5e0;
+        }
+        .tableau{
+            background-color: #fff;
+            box-shadow: 0 0 20px rgba( 0, 0, 0, 0.5);
+        }
+        .LB{
+            color:white;
+        }
+        .alert-info{
+            background-color: #12ead8;
+        }
+        .alert-success{
+            background-color: #00cc33;
+            color: #006666;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+    <div class="container">
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+        {% for message in app.flashes('info') %}
+            <div class="alert alert-info">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+
+        <h4>Liste de tous employés de la SAFEC</h4>
+        <div class="text-right"><a href="{{ path('ressource_new') }}" class="btn btn-primary">Créer un employé</a></div>
+        <br>
+        <div class="tableau">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Prenoms</th>
+                    <th>Nom</th>
+                    <th>Diplômes</th>
+                    <th>Statut dans entreprise</th>
+                    <th>Type de contrat</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for ressource in ressources %}
+                <tr>
+                    <td>{{ ressource.Prenom }}</td>
+                    <td>{{ ressource.Nom }}</td>
+                    <td>{{ ressource.Diplomes }}</td>
+                    <td>{{ ressource.StatutDansEntreprise }}</td>
+                    <td>{{ ressource.TypeDeContrat }}</td>
+                    <td>
+                        <div class="btn-group">
+                            <a href="{{ path('ressource_show', {'id': ressource.id}) }}" class=" btn btn-info"><i class="far fa-eye"></i></a>&nbsp
+                            <a href="{{ path('ressource_edit', {'id': ressource.id}) }}" class=" btn btn-warning LB"><i class="fas fa-edit"></i></a>&nbsp
+
+                        </div>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="17">Pas d'enregistrement trouvé</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        </div>
+
+    </div>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Ressource{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Modifier les données </h1>
+
+        {{ include('ressource/_form.html.twig', {'button_label': 'Modifier'}) }}
+        {{ include('ressource/_delete_form.html.twig') }}
+        <a href="{{ path('ressource_index') }}">Liste des employés</a>
+    </div>
+{% endblock %}

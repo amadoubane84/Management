@@ -1,0 +1,66 @@
+{{ form_start(form) }}
+        <div class="row">
+            <div class="col-md-3">
+                <div class="col">{{ form_row(form.Prenom) }}</div>
+            </div>
+            <div class="col-md-3">
+                <div class="col">{{ form_row(form.Nom) }}</div>
+            </div>
+            <div class="col-md-3">
+                <div class="col">{{ form_row(form.Adresse) }}</div>
+            </div>
+            <div class="col-md-3">
+                <div class="col">{{ form_row(form.Email) }}</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                {{ form_row(form.Diplomes) }}
+            </div>
+            <div class="col-md-4">
+                {{ form_row(form.Date_de_naissance) }}
+            </div>
+            <div class="col-md-4">
+                {{ form_row(form.Lieu_de_naissance) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                {{ form_row(form.Statut_dans_entreprise) }}
+            </div>
+            <div class="col-md-3">
+                {{ form_row(form.Situation_matrimoniale) }}
+            </div>
+            <div class="col-md-3">
+                {{ form_row(form.Matricule) }}
+            </div>
+            <div class="col-md-3">
+                {{ form_row(form.CNI) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                {{ form_row(form.Type_de_contrat) }}
+            </div>
+            <div class="col-md-6">
+                {{ form_row(form.imageFile) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                {{ form_row(form.IPRES) }}
+            </div>
+            <div class="col-md-3">
+                {{ form_row(form.CSS) }}
+            </div>
+            <div class="col-md-3">
+                {{ form_row(form.Declaration_fiscale) }}
+            </div>
+            <div class="col-md-3">
+                {{ form_row(form.Impots) }}
+            </div>
+        </div>
+    </div>
+</div>
+    <button class="btn btn-primary">{{ button_label|default('Enregistrer') }}</button>
+{{ form_end(form) }}

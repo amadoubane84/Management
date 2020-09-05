@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion index{% endblock %}
+
+{% block body %}
+    <div class="container">
+    <h2 class="text-center">Gestion Contrats</h2><br>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th class="text-center">Marches</th>
+                <th class="text-center">&nbsp&nbspMaitre&nbspouvrage&nbsp&nbsp</th>
+                <th>&nbsp&nbspProjets&nbsp&nbsp</th>
+                <th>&nbsp&nbspMontant&nbspFCFA&nbspTTC&nbsp&nbsp</th>
+                <th>&nbsp&nbspDate&nbspdebut&nbsp&nbsp</th>
+                <th>&nbsp&nbspContrat&nbsp&nbsp</th>
+                <th>&nbsp&nbspDuree&nbsp&nbsp</th>
+                <th>&nbsp&nbspDate&nbspfin&nbsp&nbsp</th>
+                <th class="text-center">actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for gestion in gestions %}
+            <tr>
+                <td>{{ gestion.Marches }}</td>
+                <td>{{ gestion.MaitreOuvrage }}</td>
+                <td>{{ gestion.Projets }}</td>
+                <td>{{ gestion.MontantFCFATTC }}</td>
+                <td>{{ gestion.DateDebut ? gestion.DateDebut|date('d-m-Y') : '' }}</td>
+                <td>{{ gestion.Contrat }}</td>
+                <td>{{ gestion.Duree ? gestion.Duree|date('d-m-Y') : '' }}</td>
+                <td>{{ gestion.DateFin ? gestion.DateFin|date('d-m-Y') : '' }}</td>
+                <td>
+                    <div class="btn-group">
+                    <a href="{{ path('gestion_show', {'id': gestion.id}) }}" class="btn btn-success"><i class="far fa-eye"></i></a>
+                    <a href="{{ path('gestion_edit', {'id': gestion.id}) }}" class="btn btn-warning LB"><i class="fas fa-edit"></i></a>
+                    </div>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">Aucun enregistrement trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+        <div class="text-right mt-4">
+            <a href="{{ path('gestion_new') }}" class="btn btn-primary">Créer un projet</a>
+        </div>
+            <div class="pagination">
+                {{ knp_pagination_render(gestions) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
