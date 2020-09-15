@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Ressource;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -19,6 +20,16 @@ class RessourceRepository extends ServiceEntityRepository
         parent::__construct($registry, Ressource::class);
     }
 
+    /**
+     * @return Query
+     */
+
+    public function FindAllRessourceQuery():Query
+    {
+        return $this->createQueryBuilder('r')
+            ->orderBy('r.id', 'DESC')
+            ->getQuery();
+    }
     // /**
     //  * @return Ressource[] Returns an array of Ressource objects
     //  */

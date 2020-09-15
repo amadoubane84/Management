@@ -8,26 +8,40 @@
             <h2 class="text-center mb-5">Fiche descriptive</h2>
             <div class="row">
                 <div class="col-md-4">
-                    <div class="card" style="width:360px">
+                    <div class="card show_RH" style="width:100%;height: auto">
                         {%  if ressource.filename %}
                             <div><img src="{{ vich_uploader_asset(ressource,'imageFile')|imagine_filter('thumb') }}" alt="" class="img-thumbnail" style="width:360px;height:240px"></div>
                         {% endif %}
                         <div class="card-body">
                             <h5 class="card-title text-primary text-center" style="font-size: 1.6em">{{ ressource.Prenom }}&nbsp{{ ressource.Nom }}</h5>
                         </div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">N° CNI:&nbsp&nbsp{{ ressource.CNI }}</li>
-                            <li class="list-group-item">Email:&nbsp&nbsp{{ ressource.Email }}</li>
-                            <li class="list-group-item">Matricule:&nbsp&nbsp{{ ressource.Matricule }}</li>
+                        <ul class="list-group list-group-flush ">
+                            <li class="list-group-item show_RH">N° CNI:&nbsp&nbsp{{ ressource.CNI }}</li>
+                            <li class="list-group-item show_RH">Email:&nbsp&nbsp{{ ressource.Email }}</li>
+                            <li class="list-group-item show_RH">Matricule:&nbsp&nbsp{{ ressource.Matricule }}</li>
                         </ul>
                         <div class="card-body">
                             <p>Téléphone:&nbsp&nbsp</p>
                         </div>
                     </div>
                 </div>
+                <style>
+                    .show_RH tr:nth-child(odd){
+                        background-color: #00BFFF;
+                        color:white;
+                    }
+                    .show_RH{
+                        border: 1px solid rgb(0,191,255);
+                        border-collapse: collapse;
+                    }
+                    .show_RH,td{
+                        border: 2px solid rgb(0,191,255);
+                    }
 
+
+                </style>
                 <div class="col-md-7 offset-1">
-                    <table class="table table-striped table-bordered">
+                    <table class="table table-bordered show_RH">
                         <tbody>
                         <tr>
                             <th>Id</th>

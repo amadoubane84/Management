@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Ressource;
 use App\Form\RessourceType;
 use App\Repository\RessourceRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,13 +18,16 @@ class RessourceController extends AbstractController
 {
     /**
      * @Route("/", name="ressource_index", methods={"GET"})
+     * @param PaginatorInterface $paginator
      * @param RessourceRepository $ressourceRepository
+     * @param Request $request
      * @return Response
      */
-    public function index(RessourceRepository $ressourceRepository): Response
+    public function index( PaginatorInterface $paginator, RessourceRepository $ressourceRepository,Request $request): Response
     {
+        $ressources= $paginator->paginate($ressourceRepository->FindAllRessourceQuery(),$request->query->getInt('page','1'),7);
         return $this->render('ressource/index.html.twig', [
-            'ressources' => $ressourceRepository->findAll(),
+            'ressources' => $ressources,
         ]);
     }
 

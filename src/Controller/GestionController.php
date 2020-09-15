@@ -28,7 +28,6 @@ class GestionController extends AbstractController
     {
         $gestions= $paginator->paginate($gestionRepository->findAllQuery(),
             $request->query->getInt('page', 1),5);
-        dump($gestions);
         return $this->render('gestion/index.html.twig', [
             'gestions' => $gestions,
         ]);

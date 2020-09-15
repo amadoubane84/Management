@@ -106,7 +106,7 @@ class Ressource
     private $Type_de_contrat;
     /**
      * @var string|null
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $filename;
     /**
@@ -116,14 +116,14 @@ class Ressource
     private $imageFile;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      *
      * @var string|null
      */
     private $imageName;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      * @var DateTimeInterface|null
      */
     private $updated_at;
@@ -357,7 +357,7 @@ class Ressource
      * @return Ressource
      * @throws Exception
      */
-    public function setImageFile(?File $imageFile): Ressource
+    public function setImageFile(?File $imageFile=null): Ressource
     {
         $this->imageFile = $imageFile;
         if ($this->imageFile instanceof UploadedFile) {

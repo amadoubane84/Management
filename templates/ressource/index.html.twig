@@ -20,6 +20,7 @@
             background-color: #00cc33;
             color: #006666;
         }
+
     </style>
 {% endblock %}
 {% block body %}
@@ -74,6 +75,11 @@
             {% endfor %}
             </tbody>
         </table>
+        </div>
+        <div class="col-md-4 offset-4">
+            <div class="pagination">
+                {{ knp_pagination_render(ressources) }}
+            </div>
         </div>
 
     </div>
