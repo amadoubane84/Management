@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Ressource;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -18,7 +19,11 @@ class RessourceType extends AbstractType
             ->add('Matricule')
             ->add('Email')
             ->add('Diplomes')
-            ->add('Date_de_naissance')
+            ->add('Date_de_naissance', DateType::class, [
+                'widget' => 'single_text',
+                'html5' => true,
+                'attr' => ['class' => 'js-datepicker']
+            ])
             ->add('Lieu_de_naissance')
             ->add('CNI')
             ->add('Statut_dans_entreprise')

@@ -46,7 +46,7 @@ class RessourceController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($ressource);
             $entityManager->flush();
-            $this->addFlash('success','Employé ajouté avec succès dans la base de données');
+            $this->addFlash('success','Employé créé avec succès');
             return $this->redirectToRoute('ressource_index');
         }
 
