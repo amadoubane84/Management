@@ -25,6 +25,20 @@ class Ressource
      * @ORM\Column(type="integer")
      */
     private $id;
+    const CHOIX=[
+        0=>'Stagiaire',
+        1=>'Prestataire de services',
+        2=>'CDD',
+        3=>'CDI'
+    ];
+    const CHOIXUN=[
+        0=>'Interne',
+        1=>'Externe'
+    ];
+    const CHOIXDEUX=[
+        0=>'Masculin',
+        1=>'Féminin'
+    ];
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -35,12 +49,6 @@ class Ressource
      * @ORM\Column(type="string", length=255)
      */
     private $Nom;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $Matricule;
-
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
@@ -128,6 +136,26 @@ class Ressource
      */
     private $updated_at;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $Type;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $Salaire_Brute;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $Telephone;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $Sexe;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -153,18 +181,6 @@ class Ressource
     public function setNom(string $Nom): self
     {
         $this->Nom = $Nom;
-
-        return $this;
-    }
-
-    public function getMatricule(): ?string
-    {
-        return $this->Matricule;
-    }
-
-    public function setMatricule(string $Matricule): self
-    {
-        $this->Matricule = $Matricule;
 
         return $this;
     }
@@ -392,6 +408,54 @@ class Ressource
     public function setUpdatedAt(DateTimeInterface $updated_at): self
     {
         $this->updated_at = $updated_at;
+
+        return $this;
+    }
+
+    public function getType(): ?string
+    {
+        return $this->Type;
+    }
+
+    public function setType(string $Type): self
+    {
+        $this->Type = $Type;
+
+        return $this;
+    }
+
+    public function getSalaireBrute(): ?float
+    {
+        return $this->Salaire_Brute;
+    }
+
+    public function setSalaireBrute(float $Salaire_Brute): self
+    {
+        $this->Salaire_Brute = $Salaire_Brute;
+
+        return $this;
+    }
+
+    public function getTelephone(): ?int
+    {
+        return $this->Telephone;
+    }
+
+    public function setTelephone(?int $Telephone): self
+    {
+        $this->Telephone = $Telephone;
+
+        return $this;
+    }
+
+    public function getSexe(): ?string
+    {
+        return $this->Sexe;
+    }
+
+    public function setSexe(string $Sexe): self
+    {
+        $this->Sexe = $Sexe;
 
         return $this;
     }

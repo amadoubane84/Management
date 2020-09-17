@@ -18,7 +18,7 @@
                         <ul class="list-group list-group-flush ">
                             <li class="list-group-item show_RH">N° CNI:&nbsp&nbsp{{ ressource.CNI }}</li>
                             <li class="list-group-item show_RH">Email:&nbsp&nbsp{{ ressource.Email }}</li>
-                            <li class="list-group-item show_RH">Matricule:&nbsp&nbsp{{ ressource.Matricule }}</li>
+                            <li class="list-group-item show_RH">Matricule:&nbsp&nbsp{{ ressource.Telephone }}</li>
                         </ul>
                         <div class="card-body">
                             <p>Téléphone:&nbsp&nbsp</p>
@@ -48,6 +48,10 @@
                             <td>{{ ressource.id }}</td>
                         </tr>
                         <tr>
+                            <th>Sexe</th>
+                            <td>{{ ressource.Sexe }}</td>
+                        </tr>
+                        <tr>
                             <th>Diplomes</th>
                             <td>{{ ressource.Diplomes | nl2br}}</td>
                         </tr>
@@ -66,6 +70,14 @@
                         <tr>
                             <th>Situation matrimoniale</th>
                             <td>{{ ressource.SituationMatrimoniale }}</td>
+                        </tr>
+                        <tr>
+                            <th>Type d'employé</th>
+                            <td>{{ ressource.Type }}</td>
+                        </tr>
+                        <tr>
+                            <th>Salaire Brute</th>
+                            <td>{{ ressource.salaireBrute }} FCA</td>
                         </tr>
                         <tr>
                             <th>IPRES</th>
@@ -89,13 +101,13 @@
                 </div>
             </div>
             <br>
-            <a href="{{ path('ressource_index') }}">Liste des employers</a>
+            <a href="{{ path('ressource_index') }}"><i class="fas fa-hand-point-left"> Retour vers la liste des employés</i></a>
                 <div class="text-right">
-                <div class="btn-group">
-                <a href="{{ path('ressource_edit', {'id': ressource.id}) }}" class="btn btn-warning LB ">Modifier</a>&nbsp
-                {{ include('ressource/_delete_form.html.twig') }}
+                    <div class="btn-group">
+                    <a href="{{ path('ressource_edit', {'id': ressource.id}) }}" class="btn btn-warning LB "><i class="fas fa-edit"> Modifier</i></a>&nbsp
+                    {{ include('ressource/_delete_form.html.twig') }}
+                    </div>
                 </div>
-            </div>
         </div>
     </div>
 {% endblock %}

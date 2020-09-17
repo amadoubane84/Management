@@ -3,11 +3,18 @@
 {% block title %}Créer un nouveu employer{% endblock %}
 
 {% block body %}
-    <div class="container">
+    {% block stylesheets %}
+        <style>
+            body{
+                background-color: #e0ffff;
+            }
+        </style>
+    {% endblock %}
+    <div class="container shadow p-3 bg-white rounded">
         <h1>Créer un nouveau employer</h1>
 
         {{ include('ressource/_form.html.twig') }}
 
-        <a href="{{ path('ressource_index') }}">liste des employés</a>
+        <a href="{{ path('ressource_index') }}">l<i class="fas fa-hand-point-left"> Retour vers la liste des employés</i></a>
     </div>
 {% endblock %}

@@ -3,11 +3,20 @@
 {% block title %}Edit Ressource{% endblock %}
 
 {% block body %}
-    <div class="container">
+    {% block stylesheets %}
+          <style>
+              body{
+                  background-color: #d3d3d3;
+              }
+          </style>
+    {% endblock %}
+    <div class="container shadow p-3 bg-white rounded">
         <h1>Modifier les données </h1>
+        {{ include('ressource/_form.html.twig', {'button_label': ' Enregistrer les Modifications'}) }}
 
-        {{ include('ressource/_form.html.twig', {'button_label': 'Modifier'}) }}
-        {{ include('ressource/_delete_form.html.twig') }}
-        <a href="{{ path('ressource_index') }}">Liste des employés</a>
+        <a href="{{ path('ressource_index') }}"><i class="fas fa-hand-point-left"> Retour vers la liste des employés</i></a>
+        <div class="text-right">
+            {{ include('ressource/_delete_form.html.twig') }}
+        </div>
     </div>
 {% endblock %}

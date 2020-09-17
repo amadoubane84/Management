@@ -25,6 +25,10 @@ class RessourceController extends AbstractController
      */
     public function index( PaginatorInterface $paginator, RessourceRepository $ressourceRepository,Request $request): Response
     {
+        $resultat = count($ressourceRepository->findAll());
+        $resultat1= count($ressourceRepository->findBy(['Diplomes'=>'BTS']));
+        dump($resultat);
+        dump($resultat1);
         $ressources= $paginator->paginate($ressourceRepository->FindAllRessourceQuery(),$request->query->getInt('page','1'),7);
         return $this->render('ressource/index.html.twig', [
             'ressources' => $ressources,
