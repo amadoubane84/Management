@@ -25,21 +25,26 @@ class Ressource
      * @ORM\Column(type="integer")
      */
     private $id;
-    const CHOIX=[
+    const CHOIX = [
         0=>'Stagiaire',
         1=>'Prestataire de services',
         2=>'CDD',
         3=>'CDI'
     ];
-    const CHOIXUN=[
+    const CHOIXUN = [
         0=>'Interne',
         1=>'Externe'
     ];
-    const CHOIXDEUX=[
+    const CHOIXDEUX = [
         0=>'Masculin',
         1=>'Féminin'
     ];
-
+    const MATRIMONIALE = [
+        0=>'Marié (e)',
+        1=>'Célibataire',
+        2=>'Divorcé (e)',
+        3=>'Veuf (ve)'
+    ];
     /**
      * @ORM\Column(type="string", length=255)
      */

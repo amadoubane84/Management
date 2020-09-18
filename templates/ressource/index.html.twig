@@ -20,6 +20,30 @@
             background-color: #00cc33;
             color: #006666;
         }
+        .blocAff{
+            background-color: #ff2d20;
+            box-shadow: 0 0 30px rgba( 0, 0, 0, 0.5);
+            whidth:90px;
+            height: 150px;
+            color: white;
+            animation: mymove 5s infinite;
+        }
+        @keyframes mymove {
+            from {background-color: #ff2d20;}
+            to {background-color: #0000cd;}
+        }
+        .blocAff p{
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .blocAff div.text-center{
+            font-size: 60px;
+            font-weight: bold;
+        }
+        .blocAff div.text-center span{
+            font-size: 30px;
+            font-weight: bold;
+        }
 
     </style>
 {% endblock %}
@@ -34,7 +58,7 @@
             </div>
         {% endfor %}
         {% for message in app.flashes('info') %}
-            <div class="alert alert-info">
+            <div class="alert alert-info col-md-4 offset-8">
                 {{ message }}
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -53,22 +77,64 @@
         </div>
         <br>
         <div class="statistique" style="display:none">
-            <div class="shadow p-3 mb-5 bg-white rounded">Regular shadow
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet fugiat iure minima quis similique
-                temporibus ullam! Est maiores nisi quibusdam tenetur? Accusamus animi beatae deleniti distinctio error
-                odit officia? Accusantium animi asperiores atque cumque cupiditate, debitis dolorem ea eaque eos
-                incidunt ipsum iure labore natus nulla perferendis porro quae reiciendis repellendus saepe vel. Adipisci
-                amet consequatur iure labore nobis, non quae sapiente voluptate. Ex exercitationem saepe velit?
-                Accusantium aspernatur atque consequatur cum dolor doloribus ea et fugiat harum id impedit in iste iure
-                iusto mollitia neque obcaecati qui quia, quis, ratione repellat, repudiandae similique! A ab accusamus
-                accusantium aspernatur at autem, cum cumque dignissimos distinctio dolorem dolores ea eligendi enim eos
-                et facilis fugit ipsam ipsum laboriosam magni molestias nesciunt perferendis praesentium provident quae
-                quam, recusandae sapiente sed sunt temporibus vel velit voluptate voluptatem! Deleniti, distinctio
-                dolorum ea ex explicabo facilis magnam nobis numquam placeat quae qui quisquam repellat saepe totam
-                voluptates! Accusantium, adipisci commodi cupiditate dolor doloremque enim fugiat id illo in laborum
-                laudantium molestias nisi nostrum odio placeat quae quaerat reprehenderit saepe similique tenetur. Amet
-                asperiores at consectetur dolores error iste molestias natus nihil numquam praesentium quam quas
-                quisquam, sint tempora voluptatem. In omnis quo quos ratione vitae.</p>
+            <div class="shadow p-3 mb-5 bg-white rounded">
+                <h1 class="text-center mb-5">Statistique des Ressources Humaines</h1>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="effectif blocAff">
+                            <p class="text-center mt-3">Effectif total des employés</p>
+                            <div class="text-center">
+                                {{ resultat }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="employeInterne blocAff">
+                            <p class="text-center mt-3">Nombre d'employés Interne</p>
+                            <div class="text-center">
+                                {{ interne }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="employeExterne blocAff">
+                            <p class="text-center mt-3">Nombre d'employés Externe</p>
+                            <div class="text-center">
+                                {{ externe }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br><br>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="employeMasculin blocAff">
+                            <p class="text-center mt-3">Nombre d'employés Masculin</p>
+                            <div class="text-center">
+                                {{ masculin }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="employeFeminin blocAff">
+                            <p class="text-center mt-3">Nombre d'employés Féminin</p>
+                            <div class="text-center">
+                                {{ feminin }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="salaireTotal blocAff">
+                            <p class="text-center mt-3">Salaire Mensuel Versé</p>
+                            <div class="text-center">
+                                {% for sommeSalaire in sommeSalaires%}
+                                   <span>{{ sommeSalaire |format_number({grouping_size: 3})}} FCFA</span>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
         <div class="tablejs">
@@ -91,7 +157,15 @@
                             <td>{{ ressource.Nom }}</td>
                             <td>{{ ressource.Diplomes }}</td>
                             <td>{{ ressource.StatutDansEntreprise }}</td>
-                            <td>{{ ressource.TypeDeContrat }}</td>
+                            {% if ressource.TypeDeContrat == 0 %}
+                                <td>Stagiaire</td>
+                            {% elseif ressource.TypeDeContrat== 1 %}
+                                <td>Prestataire de services</td>
+                            {% elseif ressource.TypeDeContrat== 2 %}
+                                <td>CDD</td>
+                            {% elseif ressource.TypeDeContrat== 3 %}
+                                <td>CDI</td>
+                            {% endif %}
                             <td>
                                 <div class="btn-group">
                                     <a href="{{ path('ressource_show', {'id': ressource.id}) }}" class=" btn btn-info"><i class="far fa-eye"></i></a>&nbsp

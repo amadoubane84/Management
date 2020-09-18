@@ -49,7 +49,11 @@
                         </tr>
                         <tr>
                             <th>Sexe</th>
-                            <td>{{ ressource.Sexe }}</td>
+                            {% if ressource.sexe == 0 %}
+                            <td>Masculin</td>
+                            {% else %}
+                            <td>Féminin</td>
+                            {% endif %}
                         </tr>
                         <tr>
                             <th>Diplomes</th>
@@ -69,11 +73,23 @@
                         </tr>
                         <tr>
                             <th>Situation matrimoniale</th>
-                            <td>{{ ressource.SituationMatrimoniale }}</td>
+                            {% if ressource.SituationMatrimoniale == 0 %}
+                            <td>Marié (e)</td>
+                            {% elseif ressource.SituationMatrimoniale == 1  %}
+                            <td>Célibataire</td>
+                            {% elseif ressource.SituationMatrimoniale == 2 %}
+                            <td>Divorcé (e)</td>
+                            {% elseif ressource.SituationMatrimoniale == 3 %}
+                                <td>Veuf (ve)</td>
+                            {% endif %}
                         </tr>
                         <tr>
                             <th>Type d'employé</th>
-                            <td>{{ ressource.Type }}</td>
+                            {% if ressource.Type == 0 %}
+                            <td>Interne</td>
+                            {% else %}
+                            <td>Externe</td>
+                            {% endif %}
                         </tr>
                         <tr>
                             <th>Salaire Brute</th>

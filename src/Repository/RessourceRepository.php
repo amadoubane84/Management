@@ -6,6 +6,7 @@ use App\Entity\Ressource;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Query;
 use Doctrine\Persistence\ManagerRegistry;
+use PhpParser\Node\Expr\Array_;
 
 /**
  * @method Ressource|null find($id, $lockMode = null, $lockVersion = null)
@@ -29,6 +30,19 @@ class RessourceRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('r')
             ->orderBy('r.id', 'DESC')
             ->getQuery();
+    }
+
+    /**
+     * @return array|null
+     */
+    public function findSumSalaire(): ?array
+    {
+        $entityManager = $this->getEntityManager();
+        $query = $entityManager->createQuery(
+            'SELECT SUM(p.Salaire_Brute)
+            FROM App\Entity\Ressource p'
+        );
+        return $query->getResult();
     }
 
 

@@ -33,7 +33,9 @@ class RessourceType extends AbstractType
             ])
             ->add('CNI')
             ->add('Statut_dans_entreprise')
-            ->add('Situation_matrimoniale')
+            ->add('Situation_matrimoniale',choiceType::class, [
+                'choices' =>$this->getChoices3()
+            ])
             ->add('Type_de_contrat', choiceType::class, [
                 'choices'=> $this->getChoices()
             ])
@@ -79,6 +81,14 @@ class RessourceType extends AbstractType
             $output2[$v]=$k;
         }
         return $output2;
+    }
+    private function getChoices3(){
+        $choices3= Ressource::MATRIMONIALE;
+        $output3=[];
+        foreach ($choices3 as $k=>$v){
+            $output3[$v]=$k;
+        }
+        return $output3;
     }
 
 }
