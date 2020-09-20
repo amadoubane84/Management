@@ -10,7 +10,9 @@
                 <div class="col-md-4">
                     <div class="card show_RH" style="width:100%;height: auto">
                         {%  if ressource.filename %}
-                            <div><img src="{{ vich_uploader_asset(ressource,'imageFile')|imagine_filter('thumb') }}" alt="" class="img-thumbnail" style="width:360px;height:240px"></div>
+                            <div><img src="{{ vich_uploader_asset(ressource,'imageFile')|imagine_filter('thumb') }}" alt="Image profile" class="img-thumbnail" style="width:360px;height:240px"></div>
+                        {% else %}
+                            <div><img src="{{ '/images/Default/logo.png'|imagine_filter('thumb') }}" alt="SAFEC LOGO" class="img-thumbnail" style="width:360px;height:240px"></div>
                         {% endif %}
                         <div class="card-body">
                             <h5 class="card-title text-primary text-center" style="font-size: 1.6em">{{ ressource.Prenom }}&nbsp{{ ressource.Nom }}</h5>
