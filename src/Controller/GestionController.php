@@ -43,14 +43,27 @@ class GestionController extends AbstractController
         $gestion = new Gestion();
         $form = $this->createForm(GestionType::class, $gestion);
         $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $data= $request->request->get('gestion');
+                $d1=date_create($data['Date_debut']);
+                $d2=date_create($data['Date_fin']);
+                $per=date_diff($d2,$d1);
+                $gestion->setMarches($data['Marches']);
+                $gestion->setMaitreOuvrage($data['Maitre_ouvrage']);
+                $gestion->setProjets($data['Projets']);
+                $gestion->setMontantFCFATTC($data['Montant_FCFA_TTC']);
+                $gestion->setDateDebut($d1);
+                $gestion->setContrat($data['Contrat']);
+                $gestion->setDuree($per->format('%y année(s) %m mois %d Jours'));
+                $gestion->setDateFin($d2);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($gestion);
-            $entityManager->flush();
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($gestion);
+                $entityManager->flush();
+                $this->addFlash('success','Projet ajouté avec succès');
+                return $this->redirectToRoute('gestion_index');
+            }
 
-            return $this->redirectToRoute('gestion_index');
-        }
 
         return $this->render('gestion/new.html.twig', [
             'gestion' => $gestion,
@@ -58,9 +71,11 @@ class GestionController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/show/{id}", name="gestion_show", methods={"GET"})
-     */
+        /**
+         * @Route("/show/{id}", name="gestion_show", methods={"GET"})
+         * @param Gestion $gestion
+         * @return Response
+         */
     public function show(Gestion $gestion): Response
     {
         return $this->render('gestion/show.html.twig', [
@@ -68,17 +83,32 @@ class GestionController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/edit/{id}", name="gestion_edit", methods={"GET","POST"})
-     */
+        /**
+         * @Route("/edit/{id}", name="gestion_edit", methods={"GET","POST"})
+         * @param Request $request
+         * @param Gestion $gestion
+         * @return Response
+         */
     public function edit(Request $request, Gestion $gestion): Response
     {
         $form = $this->createForm(GestionType::class, $gestion);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $data= $request->request->get('gestion');
+            $d1=date_create($data['Date_debut']);
+            $d2=date_create($data['Date_fin']);
+            $per=date_diff($d2,$d1);
+            $gestion->setMarches($data['Marches']);
+            $gestion->setMaitreOuvrage($data['Maitre_ouvrage']);
+            $gestion->setProjets($data['Projets']);
+            $gestion->setMontantFCFATTC($data['Montant_FCFA_TTC']);
+            $gestion->setDateDebut($d1);
+            $gestion->setContrat($data['Contrat']);
+            $gestion->setDuree($per->format('%y année(s) %m mois %d Jours'));
+            $gestion->setDateFin($d2);
             $this->getDoctrine()->getManager()->flush();
-
+            $this->addFlash('info','Projet modifié avec succès');
             return $this->redirectToRoute('gestion_index');
         }
 
@@ -88,9 +118,12 @@ class GestionController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/delete/{id}", name="gestion_delete", methods={"DELETE"})
-     */
+        /**
+         * @Route("/delete/{id}", name="gestion_delete", methods={"DELETE"})
+         * @param Request $request
+         * @param Gestion $gestion
+         * @return Response
+         */
     public function delete(Request $request, Gestion $gestion): Response
     {
         if ($this->isCsrfTokenValid('delete'.$gestion->getId(), $request->request->get('_token'))) {

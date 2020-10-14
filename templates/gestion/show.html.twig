@@ -11,7 +11,7 @@
                 <tbody>
 
                     <tr>
-                        <th>Marches</th>
+                        <th> Intitulé du marché</th>
                         <td>{{ gestion.Marches }}</td>
                     </tr>
                     <tr>
@@ -19,7 +19,7 @@
                         <a href="{{ path('gestion_edit', {'id': gestion.id}) }}"><td>{{ gestion.MaitreOuvrage }}</td></a>
                     </tr>
                     <tr>
-                        <th>Projets</th>
+                        <th>Domaine</th>
                         <td>{{ gestion.Projets }}</td>
                     </tr>
                     <tr>
@@ -32,11 +32,17 @@
                     </tr>
                     <tr>
                         <th>Contrat</th>
-                        <td>{{ gestion.Contrat }}</td>
+                        {% if gestion.contrat==0 %}
+                            <td>Pas disponible</td>
+                        {% elseif gestion.contrat==1 %}
+                            <td>En cours</td>
+                        {% elseif gestion.contrat==2 %}
+                            <td>Disponible</td>
+                        {% endif %}
                     </tr>
                     <tr>
                         <th>Duree</th>
-                        <td>{{ gestion.Duree ? gestion.Duree|date('d-m-Y') : '' }}</td>
+                        <td>{{ gestion.Duree ? gestion.Duree : '' }}</td>
                     </tr>
                     <tr>
                         <th>Date fin</th>

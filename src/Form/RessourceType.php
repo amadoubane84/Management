@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -25,7 +26,6 @@ class RessourceType extends AbstractType
             ->add('Date_de_naissance', DateType::class, [
                 'widget' => 'single_text',
                 'html5' => true,
-                'attr' => ['class' => 'js-datepicker']
             ])
             ->add('Lieu_de_naissance')
             ->add('Type',choiceType::class, [
@@ -49,6 +49,19 @@ class RessourceType extends AbstractType
             ->add('imageFile', FileType::class, [
                 'required'=> false
             ])
+            ->add('DateEmbauche', DateType::class, [
+                'widget' => 'single_text',
+                'html5' => true,
+            ])
+            ->add('DateDebutContrat', DateType::class, [
+                'widget' => 'single_text',
+                'html5' => true,
+            ])
+            ->add('DateFinContrat', DateType::class, [
+                'widget' => 'single_text',
+                'html5' => true,
+            ])
+            ->add('Renouvellement', IntegerType::class)
         ;
     }
 

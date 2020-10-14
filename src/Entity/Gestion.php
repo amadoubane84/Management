@@ -49,7 +49,7 @@ class Gestion
     private $Contrat;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="string", length=255)
      */
     private $Duree;
 
@@ -57,10 +57,10 @@ class Gestion
      * @ORM\Column(type="date")
      */
     private $Date_fin;
-    private Const CHOIX =[
+    public Const CHOIX =[
         0=> 'Pas disponible',
         1=> 'En cours',
-        1=> 'Disponible'
+        2=> 'Disponible'
     ];
 
     public function getId(): ?int
@@ -140,12 +140,12 @@ class Gestion
         return $this;
     }
 
-    public function getDuree(): ?\DateTimeInterface
+    public function getDuree(): ?string
     {
         return $this->Duree;
     }
 
-    public function setDuree(\DateTimeInterface $Duree): self
+    public function setDuree(string $Duree): self
     {
         $this->Duree = $Duree;
 

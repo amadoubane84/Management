@@ -1,9 +1,9 @@
 {{ form_start(form) }}
-    {{ form_row(form.Marches) }}
+    {{ form_row(form.Marches,{'label':'Intitulé du marché'}) }}
 
 <div class="row">
     <div class="col-md-4">
-        {{ form_row(form.Projets) }}
+        {{ form_row(form.Projets,{'label':'Domaine'}) }}
     </div>
     <div class="col-md-4">
         {{ form_row(form.Montant_FCFA_TTC) }}
@@ -12,22 +12,27 @@
         {{ form_row(form.Maitre_ouvrage) }}
     </div>
 </div>
-<div class="row">
+<div class="row" id="blockExpert">
     <div class="col-md-3">
         {{ form_row(form.Date_debut) }}
     </div>
     <div class="col-md-3">
-        {{ form_row(form.Contrat) }}
+        {{ form_row(form.Date_fin) }}
     </div>
     <div class="col-md-3">
         {{ form_row(form.Duree) }}
     </div>
-    <div class="col-md-3">
-        {{ form_row(form.Date_fin) }}
+    <div class="col-md-3" id="conteneurExpert">
+        {{ form_row(form.Contrat) }}
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            <input id="ajoutExpert" type="text" class="btn btn-success" value="++"> <button id="retirerExpert"> --</button>
+        </div>
     </div>
 </div><br><br>
 <div class="text-right">
-    <button  type ="submit" class="btn btn-primary"> {{ button_label|default('Enregistrer') }}</button>
+    <button id="submit" type ="submit" class="btn btn-primary"> {{ button_label|default('Enregistrer') }}</button>
 </div>
 
 {{ form_end(form) }}

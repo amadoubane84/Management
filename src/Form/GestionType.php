@@ -5,6 +5,8 @@ namespace App\Form;
 use App\Entity\Gestion;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -17,12 +19,22 @@ class GestionType extends AbstractType
             ->add('Maitre_ouvrage')
             ->add('Projets')
             ->add('Montant_FCFA_TTC')
-            ->add('Date_debut')
-            ->add('Contrat', choiceType::class,[
-                'choices'=>['Disponible','Pas disponible']
+            ->add('Date_debut', DateType::class, [
+                'widget' => 'single_text',
+                'html5' => true,
+                'attr' => ['class' => 'js-datepicker']
             ])
-            ->add('Duree')
-            ->add('Date_fin')
+            ->add('Contrat', choiceType::class,[
+                'choices'=>$this->getChoices()
+            ])
+            ->add('Duree',textType::class,[
+                'disabled'=> true
+            ])
+            ->add('Date_fin', DateType::class, [
+                'widget' => 'single_text',
+                'html5' => true,
+                'attr' => ['class' => 'js-datepicker']
+            ])
         ;
     }
 
@@ -32,13 +44,12 @@ class GestionType extends AbstractType
             'data_class' => Gestion::class,
         ]);
     }
-   /* public function getChoices()
-    {
-        $choices=self::getChoix;
+    private function getChoices(){
+        $choices= Gestion::CHOIX;
         $output=[];
-        foreach ($choices as $k => $v) {
+        foreach ($choices as $k=>$v){
             $output[$v]=$k;
         }
         return $output;
-    }*/
+    }
 }

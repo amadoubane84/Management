@@ -55,6 +55,20 @@
                 {{ form_row(form.Type) }}
             </div>
         </div>
+<div class="row">
+    <div class="col-md-3">
+        {{ form_row(form.DateEmbauche) }}
+    </div>
+    <div class="col-md-3">
+        {{ form_row(form.DateDebutContrat) }}
+    </div>
+    <div class="col-md-3">
+        {{ form_row(form.DateFinContrat) }}
+    </div>
+    <div class="col-md-3">
+        {{ form_row(form.Renouvellement) }}
+    </div>
+</div>
         <div class="row">
             <div class="col-md-3">
                 {{ form_row(form.IPRES) }}
@@ -69,6 +83,7 @@
                 {{ form_row(form.Impots) }}
             </div>
         </div>
+
     <br><br>
 <div class="text-right">
     <button class="btn btn-primary">{{ button_label|default('Enregistrer') }}</button>

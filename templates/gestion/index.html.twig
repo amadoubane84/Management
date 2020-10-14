@@ -3,40 +3,63 @@
 {% block title %}Gestion index{% endblock %}
 
 {% block body %}
-    <div class="container">
-    <h2 class="text-center">Gestion Contrats</h2><br>
-
-    <table class="table table-bordered">
+    <div class="col-md-10 offset-1 shadow p-3 mb-5 bg-white rounded">
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success col-md-4 offset-8">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endfor %}
+        {% for message in app.flashes('info') %}
+            <div class="alert alert-info col-md-4 offset-8">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endfor %}
+    <h2 class="text-center">GESTION DES PROJETS</h2><br>
+        <div class="text-right mb-2">
+            <a href="{{ path('gestion_new') }}" class="btn btn-primary">Créer un projet</a>
+        </div>
+    <table class="table table-bordered table-dark shadow">
         <thead>
             <tr>
-                <th class="text-center">Marches</th>
+                <th>ID</th>
                 <th class="text-center">&nbsp&nbspMaitre&nbspouvrage&nbsp&nbsp</th>
-                <th>&nbsp&nbspProjets&nbsp&nbsp</th>
+                <th>&nbsp&nbspDomaines&nbsp&nbsp</th>
                 <th>&nbsp&nbspMontant&nbspFCFA&nbspTTC&nbsp&nbsp</th>
                 <th>&nbsp&nbspDate&nbspdebut&nbsp&nbsp</th>
                 <th>&nbsp&nbspContrat&nbsp&nbsp</th>
                 <th>&nbsp&nbspDuree&nbsp&nbsp</th>
                 <th>&nbsp&nbspDate&nbspfin&nbsp&nbsp</th>
-                <th class="text-center">actions</th>
             </tr>
         </thead>
         <tbody>
         {% for gestion in gestions %}
             <tr>
-                <td>{{ gestion.Marches }}</td>
-                <td>{{ gestion.MaitreOuvrage }}</td>
+                <td>{{ gestion.id|nl2br }}</td>
+                <td><a href="{{ path('gestion_show', {'id': gestion.id}) }}" class="btn btn-secondary">{{ gestion.MaitreOuvrage }}</a></td>
                 <td>{{ gestion.Projets }}</td>
                 <td>{{ gestion.MontantFCFATTC }}</td>
                 <td>{{ gestion.DateDebut ? gestion.DateDebut|date('d-m-Y') : '' }}</td>
-                <td>{{ gestion.Contrat }}</td>
-                <td>{{ gestion.Duree ? gestion.Duree|date('d-m-Y') : '' }}</td>
+                {% if gestion.contrat==0 %}
+                    <td>Pas disponible</td>
+                {% elseif gestion.contrat==1 %}
+                    <td>En cours</td>
+                {% elseif gestion.contrat==2 %}
+                    <td>Disponible</td>
+                {% endif %}
+                <td>{{ gestion.Duree ? gestion.Duree : '' }}</td>
                 <td>{{ gestion.DateFin ? gestion.DateFin|date('d-m-Y') : '' }}</td>
-                <td>
+                <!--<td>
                     <div class="btn-group">
-                    <a href="{{ path('gestion_show', {'id': gestion.id}) }}" class="btn btn-success"><i class="far fa-eye"></i></a>
-                    <a href="{{ path('gestion_edit', {'id': gestion.id}) }}" class="btn btn-warning LB"><i class="fas fa-edit"></i></a>
+                    <a href=" {#{{ path('gestion_show', {'id': gestion.id}) }} #}" class="btn btn-secondary"><i class="far fa-eye"></i></a>
+                    <a href=" {#{{ path('gestion_edit', {'id': gestion.id}) }} #}" class="btn btn-warning LB"><i class="fas fa-edit"></i></a>
                     </div>
-                </td>
+                </td> -->
             </tr>
         {% else %}
             <tr>
@@ -45,10 +68,8 @@
         {% endfor %}
         </tbody>
     </table>
-        <div class="text-right mt-4">
-            <a href="{{ path('gestion_new') }}" class="btn btn-primary">Créer un projet</a>
-        </div>
-            <div class="pagination">
+
+            <div class="pagination col-md-4 offset-4">
                 {{ knp_pagination_render(gestions) }}
             </div>
         </div>

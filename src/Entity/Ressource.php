@@ -161,6 +161,26 @@ class Ressource
      */
     private $Sexe;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $DateEmbauche;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $DateDebutContrat;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $DateFinContrat;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $Renouvellement;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -461,6 +481,54 @@ class Ressource
     public function setSexe(string $Sexe): self
     {
         $this->Sexe = $Sexe;
+
+        return $this;
+    }
+
+    public function getDateEmbauche(): ?\DateTimeInterface
+    {
+        return $this->DateEmbauche;
+    }
+
+    public function setDateEmbauche(\DateTimeInterface $DateEmbauche): self
+    {
+        $this->DateEmbauche = $DateEmbauche;
+
+        return $this;
+    }
+
+    public function getDateDebutContrat(): ?\DateTimeInterface
+    {
+        return $this->DateDebutContrat;
+    }
+
+    public function setDateDebutContrat(?\DateTimeInterface $DateDebutContrat): self
+    {
+        $this->DateDebutContrat = $DateDebutContrat;
+
+        return $this;
+    }
+
+    public function getDateFinContrat(): ?\DateTimeInterface
+    {
+        return $this->DateFinContrat;
+    }
+
+    public function setDateFinContrat(?\DateTimeInterface $DateFinContrat): self
+    {
+        $this->DateFinContrat = $DateFinContrat;
+
+        return $this;
+    }
+
+    public function getRenouvellement(): ?int
+    {
+        return $this->Renouvellement;
+    }
+
+    public function setRenouvellement(?int $Renouvellement): self
+    {
+        $this->Renouvellement = $Renouvellement;
 
         return $this;
     }

@@ -98,6 +98,22 @@
                             <td>{{ ressource.salaireBrute }} FCA</td>
                         </tr>
                         <tr>
+                            <th>Date D'embauche</th>
+                            <td>{{ ressource.DateEmbauche ? ressource.DateEmbauche|date('d-m-Y') : ''  }}</td>
+                        </tr>
+                        <tr>
+                            <th>Date début Contrat</th>
+                            <td>{{ ressource.DateDebutContrat ? ressource.DateDebutContrat|date('d-m-Y') : ''}}</td>
+                        </tr>
+                        <tr>
+                            <th>DateFinContrat</th>
+                            <td>{{ ressource.DateFinContrat ? ressource.DateFinContrat|date('d-m-Y') : '' }}</td>
+                        </tr>
+                        <tr>
+                            <th>Renouvellement</th>
+                            <td>{{ ressource.Renouvellement }} mois</td>
+                        </tr>
+                        <tr>
                             <th>IPRES</th>
                             <td>{{ ressource.IPRES }}</td>
                         </tr>
